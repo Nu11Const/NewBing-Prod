@@ -1,8 +1,8 @@
 {
   "builds": [
-    {"src": "/App.py", "use": "@vercel/python"}
+    {"src": "/Functions.py", "use": "@vercel/python"}
   ],
   "routes": [
-    {"src": "/(.*)", "dest": "/App.py"}
+    {"src": "/(.*)", "dest": "/Functions.py"}
   ]
 }
