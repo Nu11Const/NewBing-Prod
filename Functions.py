@@ -50,7 +50,7 @@ async def newchat(jsonData: dict):
         "bot": None,
         "cookie": jsonData["cookie"]
     })
-    if not(jsonData["cookie"] == str):
+    if not(isinstance(jsonData["cookie"],str)):
         temp = jsonData["cookie"]
         jsonData["cookie"] = json.loads(temp)
     bot_list[id]["bot"] = Chatbot(cookies=jsonData["cookie"])
