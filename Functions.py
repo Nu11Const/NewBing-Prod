@@ -1,5 +1,5 @@
 import asyncio
-from fastapi import FastAPI, Request, WebSocket
+from fastapi import FastAPI, Request, WebSocket,HTTPException
 from fastapi.responses import HTMLResponse
 from EdgeGPT import Chatbot, ConversationStyle
 from fastapi.staticfiles import StaticFiles
@@ -50,10 +50,13 @@ async def newchat(jsonData: dict):
         "bot": None,
         "cookie": jsonData["cookie"]
     })
-    if not(isinstance(jsonData["cookie"],str)):
+    if(isinstance(jsonData["cookie"],str)):
         temp = jsonData["cookie"]
         jsonData["cookie"] = json.loads(temp)
-    bot_list[id]["bot"] = Chatbot(cookies=jsonData["cookie"])
+    try:
+        bot_list[id]["bot"] = Chatbot(cookies=jsonData["cookie"])
+    except Exception as err:
+        raise HTTPException(status_code=500, detail=str(err))
     print(jsonData["cookie"])
     return bot_list[id]
 
