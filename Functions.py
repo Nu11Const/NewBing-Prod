@@ -6,6 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import time
 import json
+from typing import Union
 app = FastAPI()
 bot_list = []
 app.mount("/assets", StaticFiles(directory="assets"), name="assets")
@@ -44,7 +45,7 @@ async def websocket_endpoint(websocket: WebSocket):
         
         
 @app.post("/api/newchat")
-async def newchat(jsonData: str | dict):
+async def newchat(jsonData: Union[str,dict]):
     id = len(bot_list)
     if(isinstance(jsonData,str)):
        temp = jsonData
