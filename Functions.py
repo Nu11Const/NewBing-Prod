@@ -46,7 +46,7 @@ async def websocket_endpoint(websocket: WebSocket):
 @app.post("/api/newchat")
 async def newchat(jsonData: dict | str):
     id = len(bot_list)
-    if(isinstance(jsonData,str):
+    if(isinstance(jsonData,str)):
        temp = jsonData
        jsonData = json.loads(jsonData)
     print(jsonData)
