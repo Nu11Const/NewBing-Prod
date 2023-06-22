@@ -39,7 +39,7 @@ async def websocket_endpoint(websocket: WebSocket):
                 if not final:
                     await websocket.send_text(response)
                 if final:
-                    await websocket.send_json(["final":true,response])
+                    await websocket.send_json(["final",true,response])
     except WebSocketDisconnect:
         pass
             
